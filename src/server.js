@@ -5,7 +5,6 @@ const http = require('http');
 const server = express();
 const port = 3000
 const apiToken = 'c029ae1abf886504e57312fd06dae66d'
-//'c79646a737c7d1470cd7e82787e540a3'
 const database = require('./database');
 
 server.get('/', (req, res) => {
@@ -13,7 +12,9 @@ server.get('/', (req, res) => {
 });
 
 server.post('/login', bodyParser.json(), (req, res) => { 
-    res.send({data: req.body.login})
+    database.getUser(req.body).then(response => {
+        res.send({data: response})
+    })
 });
 
 server.post('/regist', bodyParser.json(), (req, res) => { 
@@ -32,6 +33,9 @@ server.post('/regist', bodyParser.json(), (req, res) => {
                     if (req.body.email.indexOf("@") == -1) {
                         res.send({data: "В E-mail отсутствует символ @"})     
                     } else {
+                        database.registrationUser(req.body).catch(error => {
+                            console.log(error);
+                        })
                         res.send({data: "Поздравляем, вы успешно зарегистрированы!"})  
                     }
                 }          
@@ -58,7 +62,7 @@ server.post('/getCityCoordinates', bodyParser.json(), (req, response) => {
                     res2.on('end', () => {
                         console.log('Response ended: 2');
                         const pollutionData = JSON.parse(Buffer.concat(data).toString());
-                        database.getHistory(req.body.city,pollutionData).catch(error => {
+                        database.saveHistory(req.body.city,pollutionData).catch(error => {
                             console.log(error);
                         })
                         response.send(pollutionData)

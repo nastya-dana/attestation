@@ -1,13 +1,15 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import { AuthPage } from '../../pages/AuthPage'
-import { GeolocationPage } from '../../pages/GeolocationPage'
-import { AboutPage } from '../../pages/AboutPage'
-import { ErrorPage } from '../../pages/ErrorPage'
-import { RegistrPage } from '../../pages/RegistrPage'
+import  AuthPage  from '../../pages/AuthPage.tsx'
+import  GeolocationPage  from '../../pages/GeolocationPage.tsx'
+import  AboutPage  from '../../pages/AboutPage.tsx'
+import  ErrorPage  from '../../pages/ErrorPage.tsx'
+import  RegistrPage  from '../../pages/RegistrPage.tsx'
 import { Provider } from 'react-redux'
 import { store } from '../../store/index'
+import React from 'react';
 
-export const App = () => {
+// export const App = () => 
+function  App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
@@ -22,3 +24,4 @@ export const App = () => {
         </Provider>
     )  
 }
+export default App;
