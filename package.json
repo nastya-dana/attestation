@@ -9,6 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.16.4",
+    "buttoncomponent-nastya-button": "^1.0.0",
     "chart.js": "^4.4.3",
     "express": "^4.19.2",
     "pg": "^8.11.5",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^13.7.1",
     "nodemon": "^3.1.0"
   },
   "proxy": "http://localhost:3000"
